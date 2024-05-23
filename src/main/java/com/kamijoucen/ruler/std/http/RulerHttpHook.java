@@ -6,7 +6,7 @@ import com.kamijoucen.ruler.config.RulerConfiguration;
 import com.kamijoucen.ruler.config.option.ConfigModule;
 import com.kamijoucen.ruler.function.RulerFunction;
 import com.kamijoucen.ruler.plugin.spi.ConfigurationHook;
-import com.kamijoucen.ruler.std.http.config.HttpImportLoad;
+import com.kamijoucen.ruler.std.http.config.HttpImportLoader;
 import com.kamijoucen.ruler.std.http.function.GetFunction;
 
 public class RulerHttpHook implements ConfigurationHook {
@@ -29,7 +29,7 @@ public class RulerHttpHook implements ConfigurationHook {
     }
 
     private void registerHttpImport(RulerConfiguration config) {
-        config.getCustomImportLoadManager().registerCustomImportLoader(new HttpImportLoad());
+        config.getCustomImportLoadManager().registerCustomImportLoader(new HttpImportLoader());
     }
 
 }
