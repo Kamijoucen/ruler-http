@@ -29,7 +29,7 @@ public class RulerHttpHook implements ConfigurationHook {
     }
 
     private void registerHttpImport(RulerConfiguration config) {
-        config.getCustomImportLoadManager().registerCustomImportLoad(new HttpImportLoad());
+        config.getCustomImportLoadManager().registerCustomImportLoader(new HttpImportLoad());
     }
 
 }
