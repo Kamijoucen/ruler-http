@@ -8,7 +8,6 @@ public class BaseTest {
 
     private static final RulerConfiguration configuration = new RulerConfigurationImpl();
 
-
     public static void main(String[] args) {
         ShellRunner runner = new ShellRunner(configuration);
         runner.run();
