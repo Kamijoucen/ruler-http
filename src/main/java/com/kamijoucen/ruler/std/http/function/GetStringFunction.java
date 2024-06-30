@@ -8,7 +8,7 @@ import com.kamijoucen.ruler.std.http.HttpClient;
 import com.kamijoucen.ruler.util.CollectionUtil;
 import com.kamijoucen.ruler.value.BaseValue;
 
-public class GetFunction implements RulerFunction {
+public class GetStringFunction implements RulerFunction {
 
     @Override
     public Object call(RuntimeContext context, Scope scope, BaseValue self, Object... params) {

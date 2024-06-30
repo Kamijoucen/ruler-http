@@ -10,7 +10,7 @@ import com.kamijoucen.ruler.std.http.model.ResponseC;
 import com.kamijoucen.ruler.std.http.util.Util;
 import com.kamijoucen.ruler.value.BaseValue;
 
-public class CustomGetFunction implements RulerFunction {
+public class CustomPostFunction implements RulerFunction {
 
     @Override
     public Object call(RuntimeContext ctx, Scope scope, BaseValue self, Object... param) {
@@ -25,17 +25,19 @@ public class CustomGetFunction implements RulerFunction {
         String url = paramMap.get("url").toString();
         // request header
         Map<?, ?> header = (Map<?, ?>) paramMap.get("header");
+        // body
+        String body = paramMap.get("body").toString();
         // 发送请求
-        ResponseC resp = HttpClient.get(new RequestC(url, header));
+        ResponseC resp = HttpClient.post(new RequestC(url, header, body));
         if (resp == null) {
             return null;
         }
+
         return Util.buildResponseMap(resp);
     }
 
     @Override
     public String getName() {
-        return "GetC";
+        return "PostC";
     }
-
 }

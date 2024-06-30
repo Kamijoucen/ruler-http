@@ -7,17 +7,37 @@ import com.kamijoucen.ruler.std.http.model.ResponseC;
 import okhttp3.Headers;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class HttpClient {
 
     private static final OkHttpClient client = new OkHttpClient();
 
-    public static ResponseC get(RequestC req) {
+    public static ResponseC post(RequestC req) {
         // to string map
         Map<String, String> header = new HashMap<>();
         req.header.forEach((k, v) -> header.put(k.toString(), v.toString()));
-        Request request = new Request.Builder().url(req.url).headers(Headers.of(header)).build();
+        Request request = new Request.Builder().url(req.url).headers(Headers.of(header))
+                .post(RequestBody.create(req.body.getBytes())).build();
+        try {
+            Response response = client.newCall(request).execute();
+            if (response == null) {
+                return null;
+            }
+            return new ResponseC(response.code(), response.message(),
+                    response.headers().toMultimap(), response.body().string());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static ResponseC get(RequestC req) {
+        Map<String, String> header = new HashMap<>();
+        req.header.forEach((k, v) -> header.put(k.toString(), v.toString()));
+        Request request =
+                new Request.Builder().url(req.url).headers(Headers.of(header)).get().build();
         try {
             Response response = client.newCall(request).execute();
             if (response == null) {
