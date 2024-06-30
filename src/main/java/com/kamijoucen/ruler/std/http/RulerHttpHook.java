@@ -8,6 +8,7 @@ import com.kamijoucen.ruler.function.RulerFunction;
 import com.kamijoucen.ruler.plugin.spi.ConfigurationHook;
 import com.kamijoucen.ruler.std.http.config.HttpImportLoader;
 import com.kamijoucen.ruler.std.http.function.CustomGetFunction;
+import com.kamijoucen.ruler.std.http.function.CustomPostFunction;
 import com.kamijoucen.ruler.std.http.function.GetStringFunction;
 
 public class RulerHttpHook implements ConfigurationHook {
@@ -26,6 +27,7 @@ public class RulerHttpHook implements ConfigurationHook {
         List<RulerFunction> functions = new ArrayList<>();
         functions.add(new GetStringFunction());
         functions.add(new CustomGetFunction());
+        functions.add(new CustomPostFunction());
         config.getConfigModuleManager()
                 .registerModule(ConfigModule.createFunctionModule(STD_HTTP, functions));
     }
